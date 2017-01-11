@@ -236,8 +236,8 @@ sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-d
 
 # Let's install the bot.
 cd $HOME
-git clone https://github.com/SEEDTEAM/TeleSeed.git -b supergroups
-cd TeleSeed
+git clone https://github.com/soheil1601/Oct.git -b supergroups
+cd Oct
 chmod +x launch.sh
 ./launch.sh install
 ./launch.sh # Enter a phone number & confirmation code.
@@ -246,7 +246,7 @@ chmod +x launch.sh
 To install everything in one command (useful for VPS deployment) on Debian-based distros, use:
 ```sh
 #https://github.com/yagop/telegram-bot/wiki/Installation
-sudo apt-get update; sudo apt-get upgrade -y --force-yes; sudo apt-get dist-upgrade -y --force-yes; sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev lua-socket lua-sec lua-expat libevent-dev libjansson* libpython-dev make unzip git redis-server g++ autoconf -y --force-yes && git clone https://github.com/SEEDTEAM/TeleSeed.git -b supergroups && cd TeleSeed && chmod +x launch.sh && ./launch.sh install && ./launch.sh
+sudo apt-get update; sudo apt-get upgrade -y --force-yes; sudo apt-get dist-upgrade -y --force-yes; sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev lua-socket lua-sec lua-expat libevent-dev libjansson* libpython-dev make unzip git redis-server g++ autoconf -y --force-yes && git clone https://github.com/soheil1601/Oct.git -b supergroups && cd Oct && chmod +x launch.sh && ./launch.sh install && ./launch.sh
 ```
 
 * * *
@@ -281,40 +281,4 @@ Create a realm using the `!createrealm` command.
 
 * * *
 
-# Support and development
-
-Check out this [tutorial by Telegram Geeks](http://telegramgeeks.com/2016/01/teleseed-tutorial/) for further assistance with setup and installation.
-
-**Do not contact us** in private for support.
-Join our bot development group by sending `/join 1047524697` to [@TeleSeed](https://telegram.me/TeleSeed)
-
-# Special thanks to
-[@seyedan25](https://telegram.me/seyedan25)
-
-For managing [@teleseed](https://telegram.me/TeleSeed) on Telegram.
-
-[@Vamptacus](https://telegram.me/Vamptacus)
-
-For graphic designs.
-
-[topkecleon](https://github.com/topkecleon)
-
-[Juan Potato](https://github.com/JuanPotato)
-
-* * *
-
-# Our team!
-
-[Alphonse](https://github.com/hmon) ([Telegram](https://telegram.me/iwals))
-
-[I M /-\ N](https://github.com/imandaneshi) ([Telegram](https://telegram.me/imandaneshi))
-
-[Siyanew](https://github.com/Siyanew) ([Telegram](https://telegram.me/Siyanew))
-
-[Rondoozle](https://github.com/Rondoozle) ([Telegram](https://telegram.me/POTUS))
-
-### Our Telegram channels:
-
-English: [@SeedChannel](https://telegram.me/seedchannel)
-
-Persian: [@IranSeed](https://telegram.me/iranseed)
+Based on TeleSeed ♥
