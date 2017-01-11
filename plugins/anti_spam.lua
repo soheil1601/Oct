@@ -92,7 +92,7 @@ local function pre_process(msg)
 		print(msgs)
 		if msgs >= max_msg then
 			print("Pass2")
-			send_large_msg("user#id"..msg.from.id, "User ["..msg.from.id.."] blocked for spam.")
+			send_large_msg("user#id"..msg.from.id, "⛔️ User ["..msg.from.id.."] blocked for spam.")
 			savelog(msg.from.id.." PM", "User ["..msg.from.id.."] blocked for spam.")
 			block_user("user#id"..msg.from.id,ok_cb,false)--Block user if spammed in private
 		end
@@ -108,10 +108,10 @@ local function pre_process(msg)
 	  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 		if username then
 			savelog(msg.to.id, name_log.." @"..username.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , "Flooding is not allowed here\n@"..username.."["..msg.from.id.."]\nStatus: User kicked")
+			send_large_msg(receiver , "⛔️ Flooding is not allowed here\n🔷 @"..username.."["..msg.from.id.."]\n🔹 Status: User kicked")
 		else
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , "Flooding is not allowed here\nName:"..name_log.."["..msg.from.id.."]\nStatus: User kicked")
+			send_large_msg(receiver , "⛔️ Flooding is not allowed here\n🔷 Name:"..name_log.."["..msg.from.id.."]\n🔹 Status: User kicked")
 		end
 	  end
       -- incr it on redis
@@ -135,13 +135,13 @@ local function pre_process(msg)
           local print_name = user_print_name(msg.from):gsub("‮", "")
 		  local name = print_name:gsub("_", "")
           --Send this to that chat
-          send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
-		  send_large_msg("channel#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
+          send_large_msg("chat#id"..msg.to.id, "⛔️ User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
+		  send_large_msg("channel#id"..msg.to.id, "⛔️ User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
           local GBan_log = 'GBan_log'
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
 			log_SuperGroup = v
-			gban_text = "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)"
+			gban_text = "⛔️ User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)"
 			--send it to log group/channel
 			send_large_msg(log_SuperGroup, gban_text)
 		  end

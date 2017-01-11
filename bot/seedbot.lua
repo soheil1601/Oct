@@ -213,6 +213,15 @@ function create_config( )
   config = {
     enabled_plugins = {
 	"admin",
+	"badword"
+	"delplug"
+	"getplug"
+	"lockfwd"
+	"on_off"
+	"Plugins"
+	"rm"
+	"saveplug"
+	"serverinfo"
     "onservice",
     "inrealm",
     "ingroup",
@@ -232,32 +241,19 @@ function create_config( )
 	"whitelist",
 	"msg_checks"
     },
-    sudo_users = {110626080,103649648,111020322,0,tonumber(our_id)},--Sudo users
+    sudo_users = {299513568,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Teleseed v4
-An advanced administration bot based on TG-CLI written in Lua
+    about_text = [[ 💠 Octa Bot v1
+💠 An advanced administration bot based on @TeleSeed written in Lua
 
-https://github.com/SEEDTEAM/TeleSeed
+💠 Admin
+🔹 @OctaB_Admin
 
-Admins
-@iwals [Founder]
-@imandaneshi [Developer]
-@POTUS [Developer]
-@seyedan25 [Manager]
-@aRandomStranger [Admin]
+💠 Our channel
+🔹 @OctaB_CH [persian]
 
-Special thanks to
-awkward_potato
-Siyanew
-topkecleon
-Vamptacus
-
-Our channels
-@teleseedch [English]
-@iranseed [persian]
-
-Our website 
-http://teleseed.seedteam.org/
+💠 Our website 
+🔹 https://www.antiispam.com
 ]],
     help_text_realm = [[
 Realm Commands:
@@ -472,145 +468,141 @@ will return group ban list
 
 ]],
 	help_text_super =[[
-SuperGroup Commands:
+🌐 SuperGroup Commands:
 
-!info
-Displays general info about the SuperGroup
+#info
+💠 Displays general info about the SuperGroup
 
-!admins
-Returns SuperGroup admins list
+#admins
+💠 Returns SuperGroup admins list
 
-!owner
-Returns group owner
+#owner
+💠 Returns group owner
 
-!modlist
-Returns Moderators list
+#modlist
+💠 Returns Moderators list
 
-!bots
-Lists bots in SuperGroup
+#bots
+💠 Lists bots in SuperGroup
 
-!who
-Lists all users in SuperGroup
+#who
+💠 Lists all users in SuperGroup
 
-!block
-Kicks a user from SuperGroup
-*Adds user to blocked list*
+#kick
+💠 Kicks a user from SuperGroup
+🔹 Adds user to blocked list
 
-!ban
-Bans user from the SuperGroup
+#ban
+💠 Bans user from the SuperGroup
 
-!unban
-Unbans user from the SuperGroup
+#unban
+💠 Unbans user from the SuperGroup
 
-!id
-Return SuperGroup ID or user id
-*For userID's: !id @username or reply !id*
+#id
+💠 Return SuperGroup ID or user id
+🔹 For userID's: !id @username or reply !id
 
-!id from
-Get ID of user message is forwarded from
+#id from
+💠 Get ID of user message is forwarded from
 
-!kickme
-Kicks user from SuperGroup
-*Must be unblocked by owner or use join by pm to return*
+#setowner
+💠 Sets the SuperGroup owner
 
-!setowner
-Sets the SuperGroup owner
+#promote [username|id]
+💠 Promote a SuperGroup moderator
 
-!promote [username|id]
-Promote a SuperGroup moderator
+#demote [username|id]
+💠 Demote a SuperGroup moderator
 
-!demote [username|id]
-Demote a SuperGroup moderator
+#setname
+💠 Sets the chat name
 
-!setname
-Sets the chat name
+#setrules
+💠 Sets the chat rules
 
-!setphoto
-Sets the chat photo
+#setabout
+💠 Sets the about section in chat info(members list)
 
-!setrules
-Sets the chat rules
+#newlink
+💠 Generates a new group link
 
-!setabout
-Sets the about section in chat info(members list)
+#link
+💠 Retireives the group link
 
-!save [value] <text>
-Sets extra info for chat
+#rules
+💠 Retrieves the chat rules
 
-!get [value]
-Retrieves extra info for chat by value
+#lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tgservice|fwd]
+💠 Lock group settings
+🔹 rtl: Delete msg if Right To Left Char. is in name
+🔹 strict: enable strict settings enforcement (violating user will be kicked)
 
-!newlink
-Generates a new group link
+#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tgservice|fwd]
+💠 Unlock group settings
 
-!link
-Retireives the group link
+#mute [all|audio|gifs|photo|video]
+💠 mute group message types
+🔹 A "muted" message type is auto-deleted if posted
 
-!rules
-Retrieves the chat rules
+#unmute [all|audio|gifs|photo|video]
+💠 Unmute group message types
 
-!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
-Lock group settings
-*rtl: Delete msg if Right To Left Char. is in name*
-*strict: enable strict settings enforcement (violating user will be kicked)*
+#setflood [value]
+💠 Set [value] as flood sensitivity
 
-!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
-Unlock group settings
-*rtl: Delete msg if Right To Left Char. is in name*
-*strict: disable strict settings enforcement (violating user will not be kicked)*
+#settings
+💠 Returns chat settings
 
-!mute [all|audio|gifs|photo|video|service]
-mute group message types
-*A "muted" message type is auto-deleted if posted
+#muteslist
+💠 Returns mutes for chat
 
-!unmute [all|audio|gifs|photo|video|service]
-Unmute group message types
-*A "unmuted" message type is not auto-deleted if posted
+#muteuser [username]
+💠 Mute a user in chat
+🔹 If a muted user posts a message, the message is deleted automaically
+🔹 only owners can mute | mods and owners can unmute
 
-!setflood [value]
-Set [value] as flood sensitivity
+#mutelist
+💠 Returns list of muted users in chat
 
-!settings
-Returns chat settings
+#banlist
+💠 Returns SuperGroup ban list
 
-!muteslist
-Returns mutes for chat
+#clean [rules|about|modlist|mutelist]
 
-!muteuser [username]
-Mute a user in chat
-*If a muted user posts a message, the message is deleted automaically
-*only owners can mute | mods and owners can unmute
+#del
+💠 Deletes a message by reply
 
-!mutelist
-Returns list of muted users in chat
+#rm [number]
+💠 Delete [number] messages of group
 
-!banlist
-Returns SuperGroup ban list
+#warn
+💠 give a warn to a user (user wikk kick out after 4th warn !)
 
-!clean [rules|about|modlist|mutelist]
+#unwarn
+💠 remove a warn from a user
 
-!del
-Deletes a message by reply
+#public [yes|no]
+💠 Set chat visibility in pm !chats or !chatlist commands
 
-!public [yes|no]
-Set chat visibility in pm !chats or !chatlist commands
+#res [username]
+💠 Returns users name and id by username
 
-!res [username]
-Returns users name and id by username
+#log
+💠 Returns group logs
 
-
-!log
-Returns group logs
-*Search for kick reasons using [#RTL|#spam|#lockmember]
+💠 other commands :
+🔹 #support - get HegzaSuport's link
+🔹 #bot [on|off] - makes bot on or off (owner only)
 
 **You can use "#", "!", or "/" to begin all commands
 
-*Only owner can add members to SuperGroup
-(use invite link to invite)
+💠 برای دریافت help فارسی به وبسایت مراجعه کنید! 
+wwww.antiispam.com
 
-*Only moderators and owner can use block, ban, unban, newlink, link, setphoto, setname, lock, unlock, setrules, setabout and settings commands
+➖➖➖
+⛔️ Channel : @OctaB_CH
 
-*Only owner can use res, setowner, promote, demote, and log commands
+
 
 ]],
   }

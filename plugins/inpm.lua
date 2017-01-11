@@ -22,7 +22,7 @@ local service = msg.service
 		else
 			from_username = "@[none]"
 		end
-		text = "User From Info:\n\nID: "..from_id.."\nFirst: "..from_first_name.."\nLast: "..from_last_name.."\nUsername: "..from_username
+		text = "💠 User From Info:\n\n🔹 ID: "..from_id.."\n🔹 First: "..from_first_name.."\n🔹 Last: "..from_last_name.."\n🔹 Username: "..from_username
 		send_large_msg(user, text)
 	end
 	return msg
@@ -33,9 +33,9 @@ local function chat_list(msg)
 	local data = load_data(_config.moderation.data)
     local groups = 'groups'
     if not data[tostring(groups)] then
-        return 'No groups at the moment'
+        return '🔴 No groups at the moment'
     end
-    local message = 'List of Groups:\n*Use #join (ID) to join*\n\n'
+    local message = '💠 List of Groups:\n🔹 Use #join [ID] to join\n\n'
     for k,v in pairsByKeys(data[tostring(groups)]) do
 		local group_id = v
 		if data[tostring(group_id)] then
@@ -86,7 +86,7 @@ local service = msg.service
 local name_log = user_print_name(msg.from)
 if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel" then
 	if is_gbanned(msg.from.id) then
-        return 'You are globally banned.'
+        return '⛔️ You are globally banned.'
 	end
     if matches[1] == 'join' then
 	local data = load_data(_config.moderation.data)
@@ -95,10 +95,10 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local target = 1041751030
 		local long_id = data[tostring(target)]['long_id']
 		if is_banned(msg.from.id, tostring(target)) then
-			return 'You are banned.'
+			return '⛔️ You are banned.'
 		end
 		if data[tostring(target)]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, tostring(target)) then
-			return 'Group is private.'
+			return '⛔️ Group is private.'
 		end
 		if is_admin1(msg) then
 			user_type = 'admin'
@@ -116,10 +116,10 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local target = 1017700355
 		local long_id = data[tostring(target)]['long_id']
 		if is_banned(msg.from.id, tostring(target)) then
-			return 'You are banned.'
+			return '⛔️ You are banned.'
 		end
 		if data[tostring(target)]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, '36088606') then
-			return 'Group is private.'
+			return '⛔️ Group is private.'
 		end
 		if is_admin1(msg) then
 			user_type = 'admin'
@@ -135,7 +135,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 	elseif string.match(matches[2], '^%d+$') then
 		local long_id = tostring(data[tostring(matches[2])]['long_id'])
 		if not data[tostring(matches[2])] then
-			return "Chat not found."
+			return "⛔️ Chat not found."
 		end
 		group_name = data[tostring(matches[2])]['settings']['set_name']
 		if is_admin1(msg) then
@@ -157,10 +157,10 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 			channel_set_mod(channel, user, ok_cb, false)
 		end
         if is_banned(msg.from.id, matches[2]) then
-			return 'You are banned.'
+			return '⛔️ You are banned.'
 		end
 		if data[tostring(matches[2])]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, matches[2]) then
-			return 'Group is private.'
+			return '⛔️ Group is private.'
 		end
 			if not is_support(msg.from.id) and not is_admin1(msg) then
 				user_type = "regular"
@@ -181,9 +181,9 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local group_name = string.gsub(msg.to.print_name, '_', ' ')
 		savelog(msg.from.id, "Added Support member "..user_name.." to chat "..group_name.." (ID:"..msg.to.id..")")
 		if username then
-			send_large_msg("user#id"..user_id, "Added support member\n@"..username.."["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "💠 Added support member\n🔹 @"..username.."["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
 		else
-			send_large_msg("user#id"..user_id, "Added support member\n["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "💠 Added support member\n🔹 ["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
 		end
 	end
 	if msg.service and user_type == "admin" and msg.action.type == "chat_add_user" and msg.from.id == 0 then
@@ -192,9 +192,9 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local username = msg.action.user.username
 		savelog(msg.from.id, "Added Admin "..user_name.."  "..user_id.." to chat "..group_name.." (ID:"..msg.to.id..")")
 		if username then
-			send_large_msg("user#id"..user_id, "Added admin\n@"..username.."["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "💠 Added admin\n🔹 @"..username.."["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
 		else
-			send_large_msg("user#id"..user_id, "Added admin:\n["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
+			send_large_msg("user#id"..user_id, "💠 Added admin:\n🔹 ["..user_id.."] to chat:\n 👥 "..group_name.." (ID:"..msg.to.id..")" )
 		end
 	end
 
@@ -203,12 +203,22 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		local user_name = msg.action.user.print_name
 		print("Added "..user_id.." to chat "..msg.to.print_name.." (ID:"..msg.to.id..")")
 		savelog(msg.from.id, "Added "..user_name.." to chat "..msg.to.print_name.." (ID:"..msg.to.id..")")
-		send_large_msg("user#id"..user_id, "Added you to chat:\n\n"..group_name.." (ID:"..msg.to.id..")")
+		send_large_msg("user#id"..user_id, "✅ Added you to chat:\n\n🔹 "..group_name.." (ID:"..msg.to.id..")")
 	end
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "Welcome to TeleSeed!\n\nTo get a list of TeleSeed groups use /chats or /chatlist for a document list of chats.\n\nTo get a new TeleSeed group, contact a support group:\n\nFor English support, use: /join English support\n\nFor Persian support, use: /join Persian support\n\nFor more information, check out our channels:\n\n@TeleseedCH [English]\n@Iranseed [Persian]\n\nThanks for using @TeleSeed!"
+		text = [[
+		💠 به اکتا بات خوش آمدید !
+		🔹 برای خرید یا اجاره ربات به سایت زیر مراجعه کنید:
+		
+		🔹 https://www.antiispam.com
+		
+		🔹 با استفاده از سایت ما می توانید بصورت آنی (بلافاصله و بدون دخالت مدیریت) ربات را پس از پرداخت وجه دریافت نمایید (کاملا اتوماتیک)
+		
+		🔵 پشتیبانی برخط: @OctaB_Admin
+		🔵 کانال: @Octab_CH
+		]]
      	return text
     end
 
