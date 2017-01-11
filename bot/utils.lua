@@ -389,7 +389,7 @@ end
 -- Returns true if user was warned and false if not warned (is allowed)
 function warns_user_not_allowed(plugin, msg)
   if not user_allowed(plugin, msg) then
-    local text = 'This plugin requires privileged user'
+    local text = '⛔️ This plugin requires privileged user'
     local receiver = get_receiver(msg)
     send_msg(receiver, text, ok_cb, false)
     return true
@@ -956,7 +956,7 @@ end
 function ban_list(chat_id)
 	local hash =  'banned:'..chat_id
 	local list = redis:smembers(hash)
-	local text = "Ban list for: [ID: "..chat_id.." ]:\n\n"
+	local text = "⛔️ Ban list for: [ID: "..chat_id.." ]:\n\n"
 	for k,v in pairs(list) do
 	local user_info = redis:hgetall('user:'..v)
 		if user_info and user_info.print_name then
@@ -974,7 +974,7 @@ end
 function banall_list()
 	local hash =  'gbanned'
 	local list = redis:smembers(hash)
-	local text = "Global bans!\n\n"
+	local text = "⛔️ Global bans!\n\n"
 	for k,v in pairs(list) do
     local user_info = redis:hgetall('user:'..v)
 		if user_info and user_info.print_name then
@@ -1090,9 +1090,9 @@ end
 function mutes_list(chat_id)
 	local hash =  'mute:'..chat_id
 	local list = redis:smembers(hash)
-	local text = "Mutes for: [ID: "..chat_id.." ]:\n\n"
+	local text = "🔇 Mutes for: [ID: "..chat_id.." ]:\n\n"
 	for k,v in pairsByKeys(list) do
-		text = text.."Mute "..v.."\n"
+		text = text.."🔹 Mute "..v.."\n"
 	end
   return text
 end
@@ -1101,7 +1101,7 @@ end
 function muted_user_list(chat_id)
 	local hash =  'mute_user:'..chat_id
 	local list = redis:smembers(hash)
-	local text = "Muted Users for: [ID: "..chat_id.." ]:\n\n"
+	local text = "🔇 Muted Users for: [ID: "..chat_id.." ]:\n\n"
 	for k,v in pairsByKeys(list) do
   		local user_info = redis:hgetall('user:'..v)
 		if user_info and user_info.print_name then
@@ -1143,7 +1143,7 @@ function Kick_by_reply(extra, success, result)
 		return
 	end
 	if is_momod2(result.from.peer_id, result.to.peer_id) then -- Ignore mods,owner,admin
-		return "you can't kick mods,owner and admins"
+		return "⛔️ you can't kick mods,owner and admins"
 	end
 		chat_del_user(chat, 'user#id'..result.from.peer_id, ok_cb, false)
 		channel_kick(channel, 'user#id'..result.from.peer_id, ok_cb, false)
@@ -1187,10 +1187,10 @@ function ban_by_reply(extra, success, result)
 		return
 	end
 	if is_momod2(result.from.peer_id, result.to.peer_id) then -- Ignore mods,owner,admin
-		return "you can't kick mods,owner and admins"
+		return "⛔️ you can't kick mods,owner and admins"
 	end
 		ban_user(result.from.peer_id, result.to.peer_id)
-		send_large_msg(chat, "User "..result.from.peer_id.." Banned")
+		send_large_msg(chat, "⛔️ User "..result.from.peer_id.." Banned")
 	else
 		return
 	end
@@ -1212,8 +1212,8 @@ function ban_by_reply_admins(extra, success, result)
 		return
 	end
 		ban_user(result.from.peer_id, result.to.peer_id)
-		send_large_msg(chat, "User "..result.from.peer_id.." Banned")
-		send_large_msg(channel, "User "..result.from.peer_id.." Banned")
+		send_large_msg(chat, "⛔️ User "..result.from.peer_id.." Banned")
+		send_large_msg(channel, "⛔️ User "..result.from.peer_id.." Banned")
 	else
 		return
 	end
@@ -1231,7 +1231,7 @@ function unban_by_reply(extra, success, result)
 	if tonumber(result.from.peer_id) == tonumber(our_id) then -- Ignore bot
 		return
 	end
-		send_large_msg(chat, "User "..result.from.peer_id.." Unbanned")
+		send_large_msg(chat, "⛔️ User "..result.from.peer_id.." Unbanned")
 		-- Save on redis
 		local hash =  'banned:'..result.to.peer_id
 		redis:srem(hash, result.from.peer_id)
@@ -1256,7 +1256,7 @@ function banall_by_reply(extra, success, result)
 		local name = user_print_name(result.from)
 		banall_user(result.from.peer_id)
 		chat_del_user(chat, 'user#id'..result.from.peer_id, ok_cb, false)
-		send_large_msg(chat, "User "..name.."["..result.from.peer_id.."] globally banned")
+		send_large_msg(chat, "⛔️ User "..name.."["..result.from.peer_id.."] globally banned")
 	else
 		return
   end

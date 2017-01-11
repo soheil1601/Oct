@@ -213,15 +213,15 @@ function create_config( )
   config = {
     enabled_plugins = {
 	"admin",
-	"badword"
-	"delplug"
-	"getplug"
-	"lockfwd"
-	"on_off"
-	"Plugins"
-	"rm"
-	"saveplug"
-	"serverinfo"
+	"badword",
+	"delplug",
+	"getplug",
+	"lockfwd",
+	"on_off",
+	"Plugins",
+	"rm",
+	"saveplug",
+	"serverinfo",
     "onservice",
     "inrealm",
     "ingroup",
