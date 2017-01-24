@@ -21,9 +21,9 @@ memUsedPrc=$((($memUsed_b*100)/$memTotal_b))
 
 echo "🔱 OCTA SERVER INFO:"
 echo "➖➖➖➖"
-echo "✅ Memory: $memUsed_m MB (3GB) \n💠 $memUsedPrc% used !"
+echo "✅ Memory: $memUsed_m MB (1GB) \n💠 $memUsedPrc% used !"
 echo "➖➖"
-echo '✅ CPU Usage : '"$CPUPer"'%' "(3500GHz)"
+echo '✅ CPU Usage : '"$CPUPer"'%'
 echo "➖➖"
 echo '✅ HDD used : '"$hdd"'%'
 echo "➖➖"
