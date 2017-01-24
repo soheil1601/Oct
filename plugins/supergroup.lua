@@ -1923,7 +1923,7 @@ local function run(msg, matches)
 		end
 
 
-		if matches[1] == "muteuser" and is_momod(msg) then
+		if matches[1] == "muteuser" and is_owner(msg) then
 			local chat_id = msg.to.id
 			local hash = "mute_user"..chat_id
 			local user_id = ""
