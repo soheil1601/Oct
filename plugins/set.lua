@@ -3,17 +3,17 @@ local function save_value(msg, name, value)
     return "Usage: !set var_name value"
   end
   local hash = nil
-  if msg.to.type == 'chat' then
+  if msg.to.type == 'chat' or msg.to.type == 'channel'  then
     hash = 'chat:'..msg.to.id..':variables'
   end
   if hash then
     redis:hset(hash, name, value)
-    return "Saved "..name
+    return "✅ <b>Saved</b> <code>"..name.."</code>"
   end
 end
 local function run(msg, matches)
   if not is_momod(msg) then
-    return "For moderators only!"
+    return "⛔️ For moderators only!"
   end
   local name = string.sub(matches[1], 1, 50)
   local value = string.sub(matches[2], 1, 1000)
@@ -25,7 +25,7 @@ end
 
 return {
   patterns = {
-   "^[!/]save ([^%s]+) (.+)$"
+   "^[#!/]set ([^%s]+) (.+)$"
   }, 
   run = run 
 }
